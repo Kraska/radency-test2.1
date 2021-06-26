@@ -6,10 +6,10 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import ArchiveIcon from "@material-ui/icons/Archive";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditNoteDialog from "./EditNoteDialog";
+import EditNoteDialog from "./dialog/EditNoteDialog";
 
 
-const NotesItem = ({ item }) => {
+const NotesItem = ({ item, updateItem }) => {
 
     // const classes = useStyles();
     const { icon, title, categoryId, content, dates } = item;
@@ -23,9 +23,6 @@ const NotesItem = ({ item }) => {
         setModalOpen(false)
     };
 
-    const updateNote = (title) => {
-        console.log('new title', title)
-    };
 
     return (
         <TableRow>
@@ -39,7 +36,7 @@ const NotesItem = ({ item }) => {
                     item={item}
                     open={modalOpen}
                     onClose={closeEditForm}
-                    save={updateNote}
+                    save={updateItem}
                     value={title}
                 />
                 <IconButton color="primary" onClick={openEditForm}>

@@ -58,7 +58,7 @@ const EditNoteDialog = ({ item, open, onClose, save }) => {
                     className={classes.textField}
                     value={content}
                     onChange={handleChangeContent}
-                    onKeyPress={handleKeyPress}
+                    // onKeyPress={handleKeyPress}
                     margin="normal"
                     variant="outlined"
                 />

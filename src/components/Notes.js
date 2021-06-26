@@ -6,18 +6,7 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from
 import NotesItem from "./NotesItem";
 
 
-function createData(icon, title, categoryId, content, dates, isArchived) {
-    return { icon, title, categoryId, content, dates, isArchived };
-}
-
-const rows = [
-    createData('', 'Shopping list', 1, 'content', [], false),
-    createData('', 'The theory of evolution', 2, 'content', [], false),
-    createData('', 'New future', 3, 'content', [], false),
-    createData('', 'Books', 1, 'content', [], false),
-];
-
-const Notes = () => {
+const Notes = ({ items, updateItem }) => {
 
     const classes = useStyles();
 
@@ -37,7 +26,7 @@ const Notes = () => {
                     </TableRow>
                 </TableHead>
                     <TableBody>
-                        {rows.map(row => <NotesItem key={row.title} item={row} />)}
+                        {items.map(item => <NotesItem key={item.id} item={item} updateItem={updateItem} />)}
                     </TableBody>
                 </Table>
             </TableContainer>

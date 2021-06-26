@@ -7,7 +7,7 @@ import Footer from "../layout/Footer";
 import Notes from "../components/Notes";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import { updateNoteAction } from "../redux/actions/notes";
+import { updateNoteAction, deleteNoteAction } from "../redux/actions/notes";
 
 
 const MainPage = () => {
@@ -24,12 +24,16 @@ const MainPage = () => {
         updateNoteAction(dispatch, item)
     }
 
+    const deleteItem = (item) => {
+        deleteNoteAction(dispatch, item)
+    }
+
     return (
         <div>
             <Header />
             <div className={classes.root}>
                 <Paper style={{width: '90%', padding: '30px 30px 50px 30px'}}>
-                    <Notes items={Object.values(notes)} updateItem={updateItem} />
+                    <Notes items={Object.values(notes)} updateItem={updateItem} deleteItem={deleteItem} />
                 </Paper>
             </div>
             <Footer />

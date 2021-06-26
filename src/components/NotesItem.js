@@ -7,20 +7,28 @@ import EditIcon from "@material-ui/icons/Edit";
 import ArchiveIcon from "@material-ui/icons/Archive";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditNoteDialog from "./dialog/EditNoteDialog";
+import DeleteNoteDialog from "./dialog/DeleteNoteDialog";
 
 
-const NotesItem = ({ item, updateItem }) => {
+const NotesItem = ({ item, updateItem, deleteItem }) => {
 
     // const classes = useStyles();
     const { icon, title, categoryId, content, dates } = item;
 
-    const [modalOpen, setModalOpen] = React.useState(false);
+    const [editModalOpen, setEditModalOpen] = React.useState(false);
     const openEditForm = () => {
-        console.log('openEditForm');
-        setModalOpen(true)
+        setEditModalOpen(true)
     };
     const closeEditForm = () => {
-        setModalOpen(false)
+        setEditModalOpen(false)
+    };
+
+    const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
+    const openDeleteForm = () => {
+        setDeleteModalOpen(true)
+    };
+    const closeDeleteForm = () => {
+        setDeleteModalOpen(false)
     };
 
 
@@ -34,10 +42,9 @@ const NotesItem = ({ item, updateItem }) => {
             <TableCell align="right" padding="none">
                 <EditNoteDialog
                     item={item}
-                    open={modalOpen}
+                    open={editModalOpen}
                     onClose={closeEditForm}
                     save={updateItem}
-                    value={title}
                 />
                 <IconButton color="primary" onClick={openEditForm}>
                     <EditIcon />
@@ -49,7 +56,13 @@ const NotesItem = ({ item, updateItem }) => {
                 </IconButton>
             </TableCell>
             <TableCell align="right" padding="none">
-                <IconButton color="primary">
+                <DeleteNoteDialog
+                    item={item}
+                    open={deleteModalOpen}
+                    onClose={closeDeleteForm}
+                    remove={deleteItem}
+                />
+                <IconButton color="primary"  onClick={openDeleteForm}>
                     <DeleteIcon />
                 </IconButton>
             </TableCell>

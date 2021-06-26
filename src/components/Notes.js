@@ -6,7 +6,7 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from
 import NotesItem from "./NotesItem";
 
 
-const Notes = ({ items, updateItem }) => {
+const Notes = ({ items, updateItem, deleteItem }) => {
 
     const classes = useStyles();
 
@@ -26,7 +26,13 @@ const Notes = ({ items, updateItem }) => {
                     </TableRow>
                 </TableHead>
                     <TableBody>
-                        {items.map(item => <NotesItem key={item.id} item={item} updateItem={updateItem} />)}
+                        {items.map(item => (
+                            <NotesItem
+                                key={item.id}
+                                item={item}
+                                updateItem={updateItem}
+                                deleteItem={deleteItem}
+                            />))}
                     </TableBody>
                 </Table>
             </TableContainer>

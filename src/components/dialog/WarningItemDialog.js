@@ -5,11 +5,11 @@ import {makeStyles} from "@material-ui/core/styles";
 
 
 
-const DeleteNoteDialog = ({ item, open, onClose, remove }) => {
+const WarningItemDialog = ({ text, open, onClose, onConfirm }) => {
 
-    const handleDelete = (e) => {
+    const handleConfirm = (e) => {
         e.preventDefault();
-        remove(item);
+        onConfirm();
         onClose();
     };
 
@@ -19,13 +19,13 @@ const DeleteNoteDialog = ({ item, open, onClose, remove }) => {
     return (
         <Dialog onClose={onClose} open={open}>
             <form className={classes.container} noValidate autoComplete="off">
-                <div>You are deleting note "{item.title}". Are you sure?</div>
+                <div>{text}</div>
                 <div className={classes.dialogWrapper}>
                     <Button onClick={onClose} variant="contained" color="primary" className={classes.button}>
                         Cancel
                     </Button>
-                    <Button onClick={handleDelete} variant="contained" color="primary" className={classes.button}>
-                        Delete
+                    <Button onClick={handleConfirm} variant="contained" color="primary" className={classes.button}>
+                        Confirm
                     </Button>
                 </div>
             </form>
@@ -52,4 +52,4 @@ const useStyles = makeStyles({
     },
 });
 
-export default DeleteNoteDialog;
+export default WarningItemDialog;

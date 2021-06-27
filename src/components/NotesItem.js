@@ -2,10 +2,9 @@ import React from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
 import {TableCell, TableRow} from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import ArchiveIcon from "@material-ui/icons/Archive";
 import DeleteNoteBtn from "./btn/DeleteNoteBtn";
 import EditNoteBtn from "./btn/EditNoteBtn";
+import ArchiveNoteBtn from "./btn/ArchiveNoteBtn";
 
 
 const NotesItem = ({ item, updateItem, deleteItem }) => {
@@ -24,9 +23,7 @@ const NotesItem = ({ item, updateItem, deleteItem }) => {
                 <EditNoteBtn item={item} updateItem={updateItem} />
             </TableCell>
             <TableCell align="right" padding="none">
-                <IconButton color="primary">
-                    <ArchiveIcon />
-                </IconButton>
+                <ArchiveNoteBtn item={item} updateItem={updateItem} />
             </TableCell>
             <TableCell align="right" padding="none">
                 <DeleteNoteBtn item={item} deleteItem={deleteItem} />

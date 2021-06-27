@@ -7,7 +7,9 @@ import Footer from "../layout/Footer";
 import Notes from "../components/Notes";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import { updateNoteAction, deleteNoteAction } from "../redux/actions/notes";
+import { updateNoteAction, deleteNoteAction, addNoteAction } from "../redux/actions/notes";
+import Button from "@material-ui/core/Button";
+import AddNoteBtn from "../components/btn/AddNoteBtn";
 
 
 const MainPage = () => {
@@ -19,6 +21,10 @@ const MainPage = () => {
     const notes = useSelector(({notes}) => notes)
 
     // console.log('notes', notes);
+
+    const addItem = (item) => {
+        addNoteAction(dispatch, item)
+    }
 
     const updateItem = (item) => {
         updateNoteAction(dispatch, item)
@@ -34,6 +40,9 @@ const MainPage = () => {
             <div className={classes.root}>
                 <Paper style={{width: '90%', padding: '30px 30px 50px 30px'}}>
                     <Notes items={Object.values(notes)} updateItem={updateItem} deleteItem={deleteItem} />
+                    <div className={classes.btnContainer} >
+                        <AddNoteBtn addItem={addItem} />
+                    </div>
                 </Paper>
             </div>
             <Footer />
@@ -43,11 +52,14 @@ const MainPage = () => {
 
 const useStyles = makeStyles({
     root: {
-        // minWidth: '90%',
-        // maxWidth: '90%',
         display: 'flex',
         justifyContent: 'center',
-    }
+    },
+    btnContainer: {
+        padding: 20,
+        display: 'flex',
+        justifyContent: 'flex-end',
+    },
 });
 
 export default MainPage;

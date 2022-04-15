@@ -1,3 +1,8 @@
-export const ADD_NOTE = 'ADD_NOTE'
-export const DELETE_NOTE = 'DELETE_NOTE'
-export const UPDATE_NOTE = 'UPDATE_NOTE'
+export const ADD_NOTE = 'ADD_NOTE';
+export const DELETE_NOTE = 'DELETE_NOTE';
+export const UPDATE_NOTE = 'UPDATE_NOTE';
+
+export const INCREASE_ACTIVE = 'INCREASE__ACTIVE';
+export const INCREASE_ARCHIVED = 'INCREASE__ARCHIVED';
+export const DECREASE_ACTIVE = 'DECREASE__ACTIVE';
+export const DECREASE_ARCHIVED = 'DECREASE__ARCHIVED';

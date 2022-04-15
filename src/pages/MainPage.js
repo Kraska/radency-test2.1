@@ -8,29 +8,37 @@ import Notes from "../components/Notes";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { updateNoteAction, deleteNoteAction, addNoteAction } from "../redux/actions/notes";
-import Button from "@material-ui/core/Button";
 import AddNoteBtn from "../components/btn/AddNoteBtn";
+import Categories from "../components/Categories";
 
 
 const MainPage = () => {
 
     const classes = useStyles();
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    const notes = useSelector(({notes}) => notes)
+    const notes = useSelector(({notes}) => notes);
 
+    const categories = {
+        1: {
+            id: 1,
+            title: 'Tasks',
+            countActive: 12,
+            countArchived: 1
+        },
+    };
     // console.log('notes', notes);
 
-    const addItem = (item) => {
+    const addNote = (item) => {
         addNoteAction(dispatch, item)
     }
 
-    const updateItem = (item) => {
+    const updateNote = (item) => {
         updateNoteAction(dispatch, item)
     }
 
-    const deleteItem = (item) => {
+    const deleteNote = (item) => {
         deleteNoteAction(dispatch, item)
     }
 
@@ -39,10 +47,11 @@ const MainPage = () => {
             <Header />
             <div className={classes.root}>
                 <Paper style={{width: '90%', padding: '30px 30px 50px 30px'}}>
-                    <Notes items={Object.values(notes)} updateItem={updateItem} deleteItem={deleteItem} />
+                    <Notes items={Object.values(notes)} updateItem={updateNote} deleteItem={deleteNote} />
                     <div className={classes.btnContainer} >
-                        <AddNoteBtn addItem={addItem} />
+                        <AddNoteBtn addItem={addNote} />
                     </div>
+                    <Categories items={Object.values(categories)} />
                 </Paper>
             </div>
             <Footer />
